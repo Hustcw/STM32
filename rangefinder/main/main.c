@@ -23,18 +23,19 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 int main(void)
 {
-		RCC_Configuration();															   		
+	RCC_Configuration();															   		
   	GPIO_Configuration();	
-		tim3();
+	tim3();
   	exti();	
 		nvic();
 		Nixie_Configuration();
 		while(1){ 
-				for(j=0;j<200;j++)
-				NumDisplay(0.17*count);
-				GPIO_SetBits(GPIOA,GPIO_Pin_2);
+				for(j=0;j<200;j++){
+					NumDisplay(0.17*count);	
+				}
+			GPIO_SetBits(GPIOA,GPIO_Pin_2);
   			delay_nus(45);
-				GPIO_ResetBits(GPIOA,GPIO_Pin_2);
+			GPIO_ResetBits(GPIOA,GPIO_Pin_2);
 		}
 }	
 

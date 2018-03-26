@@ -13,18 +13,18 @@ u8 flag2=0;
 u8 flag3=0;
 u8 tag=0;
 
-void RCC_Configuration(void);	 //Ê±ÖÓ³õÊ¼»¯£¬¿ªÆôÍâÉèÊ±ÖÓ
-void GPIO_Configuration(void);	 //IO¿Ú³õÊ¼»¯£¬ÅäÖÃÆä¹¦ÄÜ
-void tim3(void);				 //¶¨Ê±Æ÷tim4³õÊ¼»¯ÅäÖÃ
-void tim4(void);				 //¶¨Ê±Æ÷tim4³õÊ¼»¯ÅäÖÃ
-void nvic(void);				 //ÖÐ¶ÏÓÅÏÈ¼¶µÈÅäÖÃ
+void RCC_Configuration(void);	 //Ê±ï¿½Ó³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+void GPIO_Configuration(void);	 //IOï¿½Ú³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¹¦ï¿½ï¿½
+void tim3(void);				 //ï¿½ï¿½Ê±ï¿½ï¿½tim4ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void tim4(void);				 //ï¿½ï¿½Ê±ï¿½ï¿½tim4ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void nvic(void);				 //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void exti(void);	
 
-void TIM3_IRQHandler(void)		//	  //TIM3µÄÒç³ö¸üÐÂÖÐ¶ÏÏìÓ¦º¯Êý£¬²úÉúpwm²¨
+void TIM3_IRQHandler(void)		//	  //TIM3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pwmï¿½ï¿½
 {
-		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	//	 //	 Çå¿ÕTIM3Òç³öÖÐ¶ÏÏìÓ¦º¯Êý±êÖ¾Î»
+		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	//	 //	 ï¿½ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾Î»
 
-		if(counter==255)            //counter ´Ó0µ½255ÀÛ¼ÓÑ­»·¼ÆÊý£¬Ã¿½øÒ»´ÎÖÐ¶Ï£¬counter¼ÓÒ»
+		if(counter==255)            //counter ï¿½ï¿½0ï¿½ï¿½255ï¿½Û¼ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð¶Ï£ï¿½counterï¿½ï¿½Ò»
 			counter = 0;
 		else 
 			counter +=1;
@@ -47,9 +47,9 @@ void assert_failed(uint8_t* file, uint32_t line)
 
  
 int main(void)
-{	//¸Ã³ÌÐòÎª´®¿ÚÍ¨ÐÅÊ¾Àý³ÌÐò£¬µ¥Æ¬»úÔÚÊÕµ½´®¿ÚÊý¾ÝÖ®Ç°£¬Ò»Ö±·¢A£¬ÊÕµ½Êý¾Ýºó£¬·¢¸ÃÊý¾Ý
+{	//ï¿½Ã³ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ò£¬µï¿½Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½Ò»Ö±ï¿½ï¿½Aï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½Ýºó£¬·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	USART1_Configuration();	//³õÊ¼»¯ÅäÖÃSTM32´®¿Ú1Í¨ÐÅ
+	USART1_Configuration();	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½STM32ï¿½ï¿½ï¿½ï¿½1Í¨ï¿½ï¿½
 	RCC_Configuration();															   		
     GPIO_Configuration();							
 	nvic(); 
@@ -60,64 +60,64 @@ int main(void)
 	{
 	}	
 }
-void RCC_Configuration(void)				 //Ê¹ÓÃÈÎºÎÒ»¸öÍâÉèÊ±£¬Îñ±Ø¿ªÆôÆäÏàÓ¦µÄÊ±ÖÓ
+void RCC_Configuration(void)				 //Ê¹ï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê±ï¿½ï¿½
 {
   
-   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_AFIO, ENABLE);	  //Ê¹ÄÜAPB2¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬°üÀ¨GPIOC, ¹¦ÄÜ¸´ÓÃÊ±ÖÓAFIOµÈ£¬
-                                                                              //ÆäËû°üÀ¨µÄÍâÉè£¬Ïê¼û¹Ì¼þ¿âÊÖ²áµÈ×ÊÁÏ
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_AFIO, ENABLE);	  //Ê¹ï¿½ï¿½APB2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½GPIOC, ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½AFIOï¿½È£ï¿½
+                                                                              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è£¬ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   
-   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //Ê¹ÄÜAPB1¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬¶¨Ê±Æ÷tim3¡¢4£¬ÆäËûÍâÉèÏê¼ûÊÖ²á
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //Ê¹ï¿½ï¿½APB1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½tim3ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½
 
                 
 }
 
 
-void GPIO_Configuration(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
+void GPIO_Configuration(void)			 //Ê¹ï¿½ï¿½Ä³ioï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
-    GPIO_InitTypeDef GPIO_InitStructure;   //¶¨Òå¸ñÊ½ÎªGPIO_InitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªGPIO_InitStructure  
+    GPIO_InitTypeDef GPIO_InitStructure;   //ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ÎªGPIO_InitTypeDefï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªGPIO_InitStructure  
                                        	  //typedef struct { u16 GPIO_Pin; GPIOSpeed_TypeDef GPIO_Speed; GPIOMode_TypeDef GPIO_Mode; } GPIO_InitTypeDef;
 
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	   //ÅäÖÃIO¿Ú¹¤×÷Ä£Ê½Îª	ÍÆÍìÊä³ö£¨ÓÐ½ÏÇ¿µÄÊä³öÄÜÁ¦£©
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	   //ÅäÖÃIO¿Ú×î¸ßµÄÊä³öËÙÂÊÎª50M
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14|GPIO_Pin_15;	 //ÅäÖÃ±»Ñ¡ÖÐµÄ¹Ü½Å£¬|±íÊ¾Í¬Ê±±»Ñ¡ÖÐ
-    GPIO_Init(GPIOC, &GPIO_InitStructure);		  //³õÊ¼»¯GPIOCµÄÏàÓ¦IO¿ÚÎªÉÏÊöÅäÖÃ£¬ÓÃÓÚledÊä³ö
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	   //ï¿½ï¿½ï¿½ï¿½IOï¿½Ú¹ï¿½ï¿½ï¿½Ä£Ê½Îª	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	   //ï¿½ï¿½ï¿½ï¿½IOï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª50M
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14|GPIO_Pin_15;	 //ï¿½ï¿½ï¿½Ã±ï¿½Ñ¡ï¿½ÐµÄ¹Ü½Å£ï¿½|ï¿½ï¿½Ê¾Í¬Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½
+    GPIO_Init(GPIOC, &GPIO_InitStructure);		  //ï¿½ï¿½Ê¼ï¿½ï¿½GPIOCï¿½ï¿½ï¿½ï¿½Ó¦IOï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ledï¿½ï¿½ï¿½
 	
-    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ÄÜSTM32 JTAGÉÕÐ´¹¦ÄÜ£¬Ö»ÄÜÓÃSWDÄ£Ê½ÉÕÐ´£¬½â·Å³öPA15ºÍPBÖÐ²¿·ÖIO¿Ú
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ï¿½ï¿½STM32 JTAGï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ü£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½SWDÄ£Ê½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Å³ï¿½PA15ï¿½ï¿½PBï¿½Ð²ï¿½ï¿½ï¿½IOï¿½ï¿½
 }
 
 
-void tim3()							  //ÅäÖÃTIM3Îª»ù±¾¶¨Ê±Æ÷Ä£Ê½ £¬Ô¼10us´¥·¢Ò»´Î£¬´¥·¢ÆµÂÊÔ¼100kHz
+void tim3()							  //ï¿½ï¿½ï¿½ï¿½TIM3Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ä£Ê½ ï¿½ï¿½Ô¼10usï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Ô¼100kHz
 {
-  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //¶¨Òå¸ñÊ½ÎªTIM_TimeBaseInitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªTIM_TimeBaseStructure  
+  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ÎªTIM_TimeBaseInitTypeDefï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªTIM_TimeBaseStructure  
 
-  	TIM_TimeBaseStructure. TIM_Period =9;		  //ÅäÖÃ¼ÆÊýãÐÖµÎª9£¬³¬¹ýÊ±£¬×Ô¶¯ÇåÁã£¬²¢´¥·¢ÖÐ¶Ï
-	  TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 Ê±ÖÓÔ¤·ÖÆµÖµ£¬³ýÒÔ¶àÉÙ
-  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // Ê±ÖÓ·ÖÆµ±¶Êý
-  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // ¼ÆÊý·½Ê½ÎªÏòÉÏ¼ÆÊý
+  	TIM_TimeBaseStructure. TIM_Period =9;		  //ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎª9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+	  TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 Ê±ï¿½ï¿½Ô¤ï¿½ï¿½ÆµÖµï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½
+  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // Ê±ï¿½Ó·ï¿½Æµï¿½ï¿½ï¿½ï¿½
+  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Îªï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½
 
-    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 ³õÊ¼»¯tim3
-    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //Çå³ýTIM3Òç³öÖÐ¶Ï±êÖ¾
-    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  Ê¹ÄÜTIM3µÄÒç³ö¸üÐÂÖÐ¶Ï
-    TIM_Cmd(TIM3,ENABLE);					  //		   Ê¹ÄÜTIM3
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 ï¿½ï¿½Ê¼ï¿½ï¿½tim3
+    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //ï¿½ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  Ê¹ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+    TIM_Cmd(TIM3,ENABLE);					  //		   Ê¹ï¿½ï¿½TIM3
 }
 
 
-void nvic()									//ÅäÖÃÖÐ¶ÏÓÅÏÈ¼¶
+void nvic()									//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½
 {	 
-     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  ÃüÃûÒ»ÓÅÏÈ¼¶±äÁ¿
+     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
- 	   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);    //	   ½«ÓÅÏÈ¼¶·Ö×é·½Ê½ÅäÖÃÎªgroup1,ÓÐ2¸öÇÀÕ¼£¨´ò¶Ï£©ÓÅÏÈ¼¶£¬8¸öÏìÓ¦ÓÅÏÈ¼¶
-     NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn; //¸ÃÖÐ¶ÏÎªTIM4Òç³ö¸üÐÂÖÐ¶Ï
-     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//´ò¶ÏÓÅÏÈ¼¶Îª1£¬ÔÚ¸Ã×éÖÐÎª½ÏµÍµÄ£¬0ÓÅÏÈ¼¶×î¸ß
-     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; // ÏìÓ¦ÓÅÏÈ¼¶0£¬´ò¶ÏÓÅÏÈ¼¶Ò»ÑùÊ±£¬0×î¸ß
-     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	 	//	ÉèÖÃÊ¹ÄÜ
-     NVIC_Init(&NVIC_InitStructure);					   	//	³õÊ¼»¯
+ 	 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);    //	   ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½é·½Ê½ï¿½ï¿½ï¿½ï¿½Îªgroup1,ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½8ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½
+     NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn; //ï¿½ï¿½ï¿½Ð¶ï¿½ÎªTIM4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½Îª1ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ÏµÍµÄ£ï¿½0ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; // ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½0ï¿½ï¿½ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	 	//	ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+     NVIC_Init(&NVIC_InitStructure);					   	//	ï¿½ï¿½Ê¼ï¿½ï¿½
 
 	 
- 	   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1); //ÒªÓÃÍ¬Ò»¸öGroup
-     NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3	Òç³ö¸üÐÂÖÐ¶Ï
-     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//	´ò¶ÏÓÅÏÈ¼¶Îª1£¬ÓëÉÏÒ»¸öÏàÍ¬£¬²»Ï£ÍûÖÐ¶ÏÏà»¥´ò¶Ï¶Ô·½
-     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; 	//	ÏìÓ¦ÓÅÏÈ¼¶1£¬µÍÓÚÉÏÒ»¸ö£¬µ±Á½¸öÖÐ¶ÏÍ¬Ê±À´Ê±£¬ÉÏÒ»¸öÏÈÖ´ÐÐ
+ 	 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1); //Òªï¿½ï¿½Í¬Ò»ï¿½ï¿½Group
+     NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½Îª1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½à»¥ï¿½ï¿½Ï¶Ô·ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; 	//	ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Í¬Ê±ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
      NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
      NVIC_Init(&NVIC_InitStructure);
  
