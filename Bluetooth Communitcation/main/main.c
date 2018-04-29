@@ -13,7 +13,7 @@ u8 flag2=0;
 u8 flag3=0;
 u8 tag=0;
 
-void RCC_Configuration(void);	 //ʱ�ӳ�ʼ������������ʱ��
+void RCC_Configuration(void);	 
 void GPIO_Configuration(void);	 //IO�ڳ�ʼ���������书��
 void tim3(void);				 //��ʱ��tim4��ʼ������
 void tim4(void);				 //��ʱ��tim4��ʼ������
@@ -51,7 +51,7 @@ int main(void)
 	
 	USART1_Configuration();	//��ʼ������STM32����1ͨ��
 	RCC_Configuration();															   		
-    GPIO_Configuration();							
+  GPIO_Configuration();							
 	nvic(); 
 	tim3();
 						

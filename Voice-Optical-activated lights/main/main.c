@@ -3,17 +3,17 @@
 #include "stdio.h"
 #include "delay.h"
 
-#define ADC1_DR_Address    ((uint32_t)0x4001244C)
+#define ADC1_DR_Address((uint32_t)0x4001244C)
 
 u16 AD1_Value;
 int flag=0;
 int key=1;
 
-void RCC_Configuration(void);	 //Ê±ÖÓ³õÊ¼»¯£¬¿ªÆôÍâÉèÊ±ÖÓ
-void GPIO_Configuration1(void);	 //IO¿Ú³õÊ¼»¯£¬ÅäÖÃÆä¹¦ÄÜ
+void RCC_Configuration(void);	 //æ—¶é’Ÿåˆå§‹åŒ–ï¼Œå¼€å¯å¤–è®¾æ—¶é’Ÿ
+void GPIO_Configuration1(void);	 //IOå£åˆå§‹åŒ–ï¼Œé…ç½®å…¶åŠŸèƒ½
 void GPIO_Configuration2(void);
-void tim3(void);				 //¶¨Ê±Æ÷tim4³õÊ¼»¯ÅäÖÃ
-void nvic(void);				 //ÖĞ¶ÏÓÅÏÈ¼¶µÈÅäÖÃ
+void tim3(void);				 //å®šæ—¶å™¨tim4åˆå§‹åŒ–é…ç½®
+void nvic(void);				 //ä¸­æ–­ä¼˜å…ˆçº§ç­‰é…ç½®
 void ADC(void);
 
 void assert_failed(uint8_t* file, uint32_t line)
@@ -26,9 +26,9 @@ void assert_failed(uint8_t* file, uint32_t line)
  
 
 
-void TIM3_IRQHandler(void)		//	  //TIM3µÄÒç³ö¸üĞÂÖĞ¶ÏÏìÓ¦º¯Êı
+void TIM3_IRQHandler(void)		//	  //TIM3çš„æº¢å‡ºæ›´æ–°ä¸­æ–­å“åº”å‡½æ•°
 {
-	    TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	//	 //	 Çå¿ÕTIM3Òç³öÖĞ¶ÏÏìÓ¦º¯Êı±êÖ¾Î»
+	    TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	//	 //	 æ¸…ç©ºTIM3æº¢å‡ºä¸­æ–­å“åº”å‡½æ•°æ ‡å¿—ä½
 			ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 }			
 
@@ -61,20 +61,20 @@ int main(void)
 }	
 
 
-void RCC_Configuration(void)				 //Ê¹ÓÃÈÎºÎÒ»¸öÍâÉèÊ±£¬Îñ±Ø¿ªÆôÆäÏàÓ¦µÄÊ±ÖÓ
+void RCC_Configuration(void)				 //ä½¿ç”¨ä»»ä½•ä¸€ä¸ªå¤–è®¾æ—¶ï¼ŒåŠ¡å¿…å¼€å¯å…¶ç›¸åº”çš„æ—¶é’Ÿ
 {
   
-   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_ADC1|RCC_APB2Periph_AFIO, ENABLE);	  //Ê¹ÄÜAPB2¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬°üÀ¨GPIOA,ADC1, ¹¦ÄÜ¸´ÓÃÊ±ÖÓAFIOµÈ£¬
-                                                                              //ÆäËû°üÀ¨µÄÍâÉè£¬Ïê¼û¹Ì¼ş¿âÊÖ²áµÈ×ÊÁÏ
-   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4|RCC_APB1Periph_TIM3, ENABLE); //Ê¹ÄÜAPB1¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬¶¨Ê±Æ÷tim3£¬ÆäËûÍâÉèÏê¼ûÊÖ²á
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_ADC1|RCC_APB2Periph_AFIO, ENABLE);	  //ä½¿èƒ½APB2æ§åˆ¶å¤–è®¾çš„æ—¶é’Ÿï¼ŒåŒ…æ‹¬GPIOA,ADC1, åŠŸèƒ½å¤ç”¨æ—¶é’ŸAFIOç­‰ï¼Œ
+                                                                              //å…¶ä»–åŒ…æ‹¬çš„å¤–è®¾ï¼Œè¯¦è§å›ºä»¶åº“æ‰‹å†Œç­‰èµ„æ–™
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4|RCC_APB1Periph_TIM3, ENABLE); //ä½¿èƒ½APB1æ§åˆ¶å¤–è®¾çš„æ—¶é’Ÿï¼Œå®šæ—¶å™¨tim3ï¼Œå…¶ä»–å¤–è®¾è¯¦è§æ‰‹å†Œ
 
                 
 }
 
 
-void GPIO_Configuration1(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
+void GPIO_Configuration1(void)			 //ä½¿ç”¨æŸioå£è¾“å…¥è¾“å‡ºæ—¶ï¼Œè¯·åŠ¡å¿…å¯¹å…¶åˆå§‹åŒ–é…ç½®
 {
-    GPIO_InitTypeDef GPIO_InitStructure;   //¶¨Òå¸ñÊ½ÎªGPIO_InitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªGPIO_InitStructure  
+    GPIO_InitTypeDef GPIO_InitStructure;   //å®šä¹‰æ ¼å¼ä¸ºGPIO_InitTypeDefçš„ç»“æ„ä½“çš„åå­—ä¸ºGPIO_InitStructure  
                                        	  //typedef struct { u16 GPIO_Pin; GPIOSpeed_TypeDef GPIO_Speed; GPIOMode_TypeDef GPIO_Mode; } GPIO_InitTypeDef;
 		GPIO_InitStructure.GPIO_Pin =GPIO_Pin_0;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
@@ -83,46 +83,46 @@ void GPIO_Configuration1(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
 	
 
 
-    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ÄÜSTM32 JTAGÉÕĞ´¹¦ÄÜ£¬Ö»ÄÜÓÃSWDÄ£Ê½ÉÕĞ´£¬½â·Å³öPA15ºÍPBÖĞ²¿·ÖIO¿Ú
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//å¤±èƒ½STM32 JTAGçƒ§å†™åŠŸèƒ½ï¼Œåªèƒ½ç”¨SWDæ¨¡å¼çƒ§å†™ï¼Œè§£æ”¾å‡ºPA15å’ŒPBä¸­éƒ¨åˆ†IOå£
 }
-void GPIO_Configuration2(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
+void GPIO_Configuration2(void)			 //ä½¿ç”¨æŸioå£è¾“å…¥è¾“å‡ºæ—¶ï¼Œè¯·åŠ¡å¿…å¯¹å…¶åˆå§‹åŒ–é…ç½®
 {
-    GPIO_InitTypeDef GPIO_InitStructure;   //¶¨Òå¸ñÊ½ÎªGPIO_InitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªGPIO_InitStructure  
+    GPIO_InitTypeDef GPIO_InitStructure;   //å®šä¹‰æ ¼å¼ä¸ºGPIO_InitTypeDefçš„ç»“æ„ä½“çš„åå­—ä¸ºGPIO_InitStructure  
                                        	  //typedef struct { u16 GPIO_Pin; GPIOSpeed_TypeDef GPIO_Speed; GPIOMode_TypeDef GPIO_Mode; } GPIO_InitTypeDef;
 
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 //ÅäÖÃIO¿ÚµÄ¹¤×÷Ä£Ê½ÎªÉÏÀ­ÊäÈë£¨¸Ãio¿ÚÄÚ²¿Íâ½Óµç×èµ½µçÔ´£©
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //ÅäÖÃIO¿Ú×î¸ßµÄÊä³öËÙÂÊÎª50M
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;  //ÅäÖÃ±»Ñ¡ÖĞµÄ¹Ü½Å£¬|±íÊ¾Í¬Ê±±»Ñ¡ÖĞ
-    GPIO_Init(GPIOA, &GPIO_InitStructure);			        //³õÊ¼»¯GPIOCµÄÏàÓ¦IO¿ÚÎªÉÏÊöÅäÖÃ£¬ÓÃÓÚ°´¼ü¼ì²â
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 //é…ç½®IOå£çš„å·¥ä½œæ¨¡å¼ä¸ºä¸Šæ‹‰è¾“å…¥ï¼ˆè¯¥ioå£å†…éƒ¨å¤–æ¥ç”µé˜»åˆ°ç”µæºï¼‰
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //é…ç½®IOå£æœ€é«˜çš„è¾“å‡ºé€Ÿç‡ä¸º50M
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;  //é…ç½®è¢«é€‰ä¸­çš„ç®¡è„šï¼Œ|è¡¨ç¤ºåŒæ—¶è¢«é€‰ä¸­
+    GPIO_Init(GPIOA, &GPIO_InitStructure);			        //åˆå§‹åŒ–GPIOCçš„ç›¸åº”IOå£ä¸ºä¸Šè¿°é…ç½®ï¼Œç”¨äºæŒ‰é”®æ£€æµ‹
 
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	   //ÅäÖÃIO¿Ú¹¤×÷Ä£Ê½Îª	ÍÆÍìÊä³ö£¨ÓĞ½ÏÇ¿µÄÊä³öÄÜÁ¦£©
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	   //ÅäÖÃIO¿Ú×î¸ßµÄÊä³öËÙÂÊÎª50M
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;	 //ÅäÖÃ±»Ñ¡ÖĞµÄ¹Ü½Å£¬|±íÊ¾Í¬Ê±±»Ñ¡ÖĞ
-    GPIO_Init(GPIOA, &GPIO_InitStructure);		  //³õÊ¼»¯GPIOCµÄÏàÓ¦IO¿ÚÎªÉÏÊöÅäÖÃ£¬ÓÃÓÚledÊä³ö
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	   //é…ç½®IOå£å·¥ä½œæ¨¡å¼ä¸º	æ¨æŒ½è¾“å‡ºï¼ˆæœ‰è¾ƒå¼ºçš„è¾“å‡ºèƒ½åŠ›ï¼‰
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	   //é…ç½®IOå£æœ€é«˜çš„è¾“å‡ºé€Ÿç‡ä¸º50M
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;	 //é…ç½®è¢«é€‰ä¸­çš„ç®¡è„šï¼Œ|è¡¨ç¤ºåŒæ—¶è¢«é€‰ä¸­
+    GPIO_Init(GPIOA, &GPIO_InitStructure);		  //åˆå§‹åŒ–GPIOCçš„ç›¸åº”IOå£ä¸ºä¸Šè¿°é…ç½®ï¼Œç”¨äºledè¾“å‡º
 	
-    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ÄÜSTM32 JTAGÉÕĞ´¹¦ÄÜ£¬Ö»ÄÜÓÃSWDÄ£Ê½ÉÕĞ´£¬½â·Å³öPA15ºÍPBÖĞ²¿·ÖIO¿Ú
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//å¤±èƒ½STM32 JTAGçƒ§å†™åŠŸèƒ½ï¼Œåªèƒ½ç”¨SWDæ¨¡å¼çƒ§å†™ï¼Œè§£æ”¾å‡ºPA15å’ŒPBä¸­éƒ¨åˆ†IOå£
 }
 
 
-void tim3()							  //ÅäÖÃTIM3Îª»ù±¾¶¨Ê±Æ÷Ä£Ê½ £¬Ô¼100Hz
+void tim3()							  //é…ç½®TIM3ä¸ºåŸºæœ¬å®šæ—¶å™¨æ¨¡å¼ ï¼Œçº¦100Hz
 {
-  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //¶¨Òå¸ñÊ½ÎªTIM_TimeBaseInitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªTIM_TimeBaseStructure  
+  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //å®šä¹‰æ ¼å¼ä¸ºTIM_TimeBaseInitTypeDefçš„ç»“æ„ä½“çš„åå­—ä¸ºTIM_TimeBaseStructure  
 
-  	TIM_TimeBaseStructure. TIM_Period =9999;		  //ÅäÖÃ¼ÆÊıãĞÖµÎª9999£¬³¬¹ıÊ±£¬×Ô¶¯ÇåÁã£¬²¢´¥·¢ÖĞ¶Ï
-		TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 Ê±ÖÓÔ¤·ÖÆµÖµ£¬¶¨Ê±Æ÷µÄ¼ÆÊıµÄÆµÂÊµÈÓÚÖ÷Ê±ÖÓÆµÂÊ³ıÒÔ¸ÃÔ¤·ÖÆµÖµ
-  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // Ê±ÖÓ·ÖÆµ±¶Êı(ÓÃÓÚÊı×ÖÂË²¨£¬ÔİÊ±ÎŞÓÃ)
-  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // ¼ÆÊı·½Ê½ÎªÏòÉÏ¼ÆÊı
+  	TIM_TimeBaseStructure. TIM_Period =9999;		  //é…ç½®è®¡æ•°é˜ˆå€¼ä¸º9999ï¼Œè¶…è¿‡æ—¶ï¼Œè‡ªåŠ¨æ¸…é›¶ï¼Œå¹¶è§¦å‘ä¸­æ–­
+		TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 æ—¶é’Ÿé¢„åˆ†é¢‘å€¼ï¼Œå®šæ—¶å™¨çš„è®¡æ•°çš„é¢‘ç‡ç­‰äºä¸»æ—¶é’Ÿé¢‘ç‡é™¤ä»¥è¯¥é¢„åˆ†é¢‘å€¼
+  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // æ—¶é’Ÿåˆ†é¢‘å€æ•°(ç”¨äºæ•°å­—æ»¤æ³¢ï¼Œæš‚æ—¶æ— ç”¨)
+  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // è®¡æ•°æ–¹å¼ä¸ºå‘ä¸Šè®¡æ•°
 
-    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 ³õÊ¼»¯tim3
-    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //Çå³ıTIM3Òç³öÖĞ¶Ï±êÖ¾
-    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  Ê¹ÄÜTIM3µÄÒç³ö¸üĞÂÖĞ¶Ï
-    TIM_Cmd(TIM3,ENABLE);					  //		   Ê¹ÄÜTIM3
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 åˆå§‹åŒ–tim3
+    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //æ¸…é™¤TIM3æº¢å‡ºä¸­æ–­æ ‡å¿—
+    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  ä½¿èƒ½TIM3çš„æº¢å‡ºæ›´æ–°ä¸­æ–­
+    TIM_Cmd(TIM3,ENABLE);					  //		   ä½¿èƒ½TIM3
 }
 
 
-void nvic()									//ÅäÖÃÖĞ¶ÏÓÅÏÈ¼¶
+void nvic()									//é…ç½®ä¸­æ–­ä¼˜å…ˆçº§
 {	 
-     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  ÃüÃûÒ»ÓÅÏÈ¼¶±äÁ¿
+     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  å‘½åä¸€ä¼˜å…ˆçº§å˜é‡
 
 	 
 		 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0); 
@@ -138,23 +138,23 @@ void ADC()
 {										 
 	ADC_InitTypeDef ADC_InitStructure;
 	
-  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;   //ÉèÖÃADC1ºÍADC2¹¤×÷ÔÚ¶ÀÁ¢¹¤×÷Ä£Ê½
-  ADC_InitStructure.ADC_ScanConvMode = DISABLE;				// ÉèÖÃADC¹¤×÷ÔÚÉ¨ÃèÄ£Ê½£¨¶àÍ¨µÀ£©£¬Èç¹ûÖ»ĞèÒªÒ»¸öÍ¨µÀ£¬ÅäÖÃÎªµ¥Í¨µÀÄ£Ê½ DISABLE
-  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;  //ÉèÖÃADC¹¤×÷ÔÚµ¥´ÎÄ£Ê½£¨Ê¹ÄÜÒ»´Î£¬×ª»»Ò»´Î£»Ò²¿ÉÒÔÅäÖÃÁ¬ĞøÄ£Ê½£¬×Ô¶¯ÖÜÆÚĞÔ²ÉÑù
-  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;  //ÉèÖÃ×ª»»ÓÉÈí¼ş´¥·¢£¬²»ÓÃÍâ²¿´¥·¢
-  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;              //ADCÊı¾İÓÒ¶ÔÆë
-  ADC_InitStructure.ADC_NbrOfChannel = 1;                          //ÉèÖÃ½øĞĞ×ª»»µÄÍ¨µÀÊıÄ¿Îª5
-  ADC_Init(ADC1, &ADC_InitStructure);                              //³õÊ¼»¯ADC1
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;   //è®¾ç½®ADC1å’ŒADC2å·¥ä½œåœ¨ç‹¬ç«‹å·¥ä½œæ¨¡å¼
+  ADC_InitStructure.ADC_ScanConvMode = DISABLE;				// è®¾ç½®ADCå·¥ä½œåœ¨æ‰«ææ¨¡å¼ï¼ˆå¤šé€šé“ï¼‰ï¼Œå¦‚æœåªéœ€è¦ä¸€ä¸ªé€šé“ï¼Œé…ç½®ä¸ºå•é€šé“æ¨¡å¼ DISABLE
+  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;  //è®¾ç½®ADCå·¥ä½œåœ¨å•æ¬¡æ¨¡å¼ï¼ˆä½¿èƒ½ä¸€æ¬¡ï¼Œè½¬æ¢ä¸€æ¬¡ï¼›ä¹Ÿå¯ä»¥é…ç½®è¿ç»­æ¨¡å¼ï¼Œè‡ªåŠ¨å‘¨æœŸæ€§é‡‡æ ·
+  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;  //è®¾ç½®è½¬æ¢ç”±è½¯ä»¶è§¦å‘ï¼Œä¸ç”¨å¤–éƒ¨è§¦å‘
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;              //ADCæ•°æ®å³å¯¹é½
+  ADC_InitStructure.ADC_NbrOfChannel = 1;                          //è®¾ç½®è¿›è¡Œè½¬æ¢çš„é€šé“æ•°ç›®ä¸º5
+  ADC_Init(ADC1, &ADC_InitStructure);                              //åˆå§‹åŒ–ADC1
 
-  ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,ADC_SampleTime_239Cycles5);  //ÉèÖÃADC1µÄÍ¨µÀ0µÚÒ»¸ö½øĞĞ×ª»»£¬²ÉÑùÊ±ÖÓÖÜÆÚ239.5¸ö
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,ADC_SampleTime_239Cycles5);  //è®¾ç½®ADC1çš„é€šé“0ç¬¬ä¸€ä¸ªè¿›è¡Œè½¬æ¢ï¼Œé‡‡æ ·æ—¶é’Ÿå‘¨æœŸ239.5ä¸ª
 
-  ADC_Cmd(ADC1, ENABLE);                           //Ê¹ÄÜADC1
+  ADC_Cmd(ADC1, ENABLE);                           //ä½¿èƒ½ADC1
   
-  ADC_ResetCalibration(ADC1);                        //ÖØÖÃADC1µÄĞ£×¼¼Ä´æÆ÷
-  while(ADC_GetResetCalibrationStatus(ADC1));        //µÈ´ıADC1Ğ£×¼ÖØÖÃÍê³É
+  ADC_ResetCalibration(ADC1);                        //é‡ç½®ADC1çš„æ ¡å‡†å¯„å­˜å™¨
+  while(ADC_GetResetCalibrationStatus(ADC1));        //ç­‰å¾…ADC1æ ¡å‡†é‡ç½®å®Œæˆ
 
-  ADC_StartCalibration(ADC1);                        //¿ªÊ¼ADC1Ğ£×¼
-  while(ADC_GetCalibrationStatus(ADC1));             //µÈ´ıADC1Ğ£×¼Íê³É
-  ADC_SoftwareStartConvCmd(ADC1, ENABLE);            //Ê¹ÄÜADC1Èí¼ş¿ªÊ¼×ª»»
+  ADC_StartCalibration(ADC1);                        //å¼€å§‹ADC1æ ¡å‡†
+  while(ADC_GetCalibrationStatus(ADC1));             //ç­‰å¾…ADC1æ ¡å‡†å®Œæˆ
+  ADC_SoftwareStartConvCmd(ADC1, ENABLE);            //ä½¿èƒ½ADC1è½¯ä»¶å¼€å§‹è½¬æ¢
 }
 

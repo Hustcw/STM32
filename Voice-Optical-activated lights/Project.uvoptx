@@ -204,6 +204,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>flag</ItemText>
         </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>\\STM32F10X_MD\main/main.c\AD1_Value</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>\\STM32F10X_MD\main/main.c\AD1_Value</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>

@@ -11,10 +11,10 @@ u16 AD1_Value;
 float resistence=0;
 
 
-void RCC_Configuration(void);	 //Ê±ÖÓ³õÊ¼»¯£¬¿ªÆôÍâÉèÊ±ÖÓ
-void GPIO_Configuration(void);	 //IO¿Ú³õÊ¼»¯£¬ÅäÖÃÆä¹¦ÄÜ
-void tim3(void);				 //¶¨Ê±Æ÷tim4³õÊ¼»¯ÅäÖÃ
-void nvic(void);				 //ÖÐ¶ÏÓÅÏÈ¼¶µÈÅäÖÃ
+void RCC_Configuration(void);	 //Ê±ï¿½Ó³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+void GPIO_Configuration(void);	 //IOï¿½Ú³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¹¦ï¿½ï¿½
+void tim3(void);				 //ï¿½ï¿½Ê±ï¿½ï¿½tim4ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void nvic(void);				 //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void ADC(void);
 
 void assert_failed(uint8_t* file, uint32_t line)
@@ -30,7 +30,7 @@ float RESLIST[150] = {44.1201,42.1180,40.2121,38.3988,36.6746,35.0362,33.4802,32
 	18.4818,17.6316,16.9917,16.2797,15.5350,14.7867,14.0551,13.3536,12.6900,
 	12.0684,11.4900,10.9539,10.4582,10.0000,9.5762,9.1835,8.8186,8.4784,8.1600,
 	7.5785,7.3109,7.0564,6.8133,6.5806,6.3570,6.1418,5.9343,5.7340,
-  5.5405,5.3534,5.1725,4.9976,4.8286}; //-10ÖÁ45¶ÈÈÈÃôµç×è×èÖµ
+  5.5405,5.3534,5.1725,4.9976,4.8286}; //-10ï¿½ï¿½45ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 
 
 int main(void)
@@ -65,20 +65,20 @@ int main(void)
 
 
 
-void RCC_Configuration(void)				 //Ê¹ÓÃÈÎºÎÒ»¸öÍâÉèÊ±£¬Îñ±Ø¿ªÆôÆäÏàÓ¦µÄÊ±ÖÓ
+void RCC_Configuration(void)				 //Ê¹ï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê±ï¿½ï¿½
 {
   
-   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_ADC1|RCC_APB2Periph_AFIO, ENABLE);	  //Ê¹ÄÜAPB2¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬°üÀ¨GPIOA,ADC1, ¹¦ÄÜ¸´ÓÃÊ±ÖÓAFIOµÈ£¬
-                                                                              //ÆäËû°üÀ¨µÄÍâÉè£¬Ïê¼û¹Ì¼þ¿âÊÖ²áµÈ×ÊÁÏ
-   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //Ê¹ÄÜAPB1¿ØÖÆÍâÉèµÄÊ±ÖÓ£¬¶¨Ê±Æ÷tim3£¬ÆäËûÍâÉèÏê¼ûÊÖ²á
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_ADC1|RCC_APB2Periph_AFIO, ENABLE);	  //Ê¹ï¿½ï¿½APB2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½GPIOA,ADC1, ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½AFIOï¿½È£ï¿½
+                                                                              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è£¬ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //Ê¹ï¿½ï¿½APB1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½tim3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½
 
                 
 }
 
 
-void GPIO_Configuration(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
+void GPIO_Configuration(void)			 //Ê¹ï¿½ï¿½Ä³ioï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
-    GPIO_InitTypeDef GPIO_InitStructure;   //¶¨Òå¸ñÊ½ÎªGPIO_InitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªGPIO_InitStructure  
+    GPIO_InitTypeDef GPIO_InitStructure;   //ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ÎªGPIO_InitTypeDefï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªGPIO_InitStructure  
                                        	  //typedef struct { u16 GPIO_Pin; GPIOSpeed_TypeDef GPIO_Speed; GPIOMode_TypeDef GPIO_Mode; } GPIO_InitTypeDef;
 		 GPIO_InitStructure.GPIO_Pin =GPIO_Pin_0;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
@@ -86,72 +86,71 @@ void GPIO_Configuration(void)			 //Ê¹ÓÃÄ³io¿ÚÊäÈëÊä³öÊ±£¬ÇëÎñ±Ø¶ÔÆä³õÊ¼»¯ÅäÖÃ
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 
-    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ÄÜSTM32 JTAGÉÕÐ´¹¦ÄÜ£¬Ö»ÄÜÓÃSWDÄ£Ê½ÉÕÐ´£¬½â·Å³öPA15ºÍPBÖÐ²¿·ÖIO¿Ú
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);	//Ê§ï¿½ï¿½STM32 JTAGï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ü£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½SWDÄ£Ê½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Å³ï¿½PA15ï¿½ï¿½PBï¿½Ð²ï¿½ï¿½ï¿½IOï¿½ï¿½
 }
 
 
-void tim3()							  //ÅäÖÃTIM3Îª»ù±¾¶¨Ê±Æ÷Ä£Ê½ £¬Ô¼100Hz
+void tim3()							  //ï¿½ï¿½ï¿½ï¿½TIM3Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ä£Ê½ ï¿½ï¿½Ô¼100Hz
 {
-  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //¶¨Òå¸ñÊ½ÎªTIM_TimeBaseInitTypeDefµÄ½á¹¹ÌåµÄÃû×ÖÎªTIM_TimeBaseStructure  
+  	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;	  //ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ÎªTIM_TimeBaseInitTypeDefï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªTIM_TimeBaseStructure  
 
-  	TIM_TimeBaseStructure. TIM_Period =9999;		  //ÅäÖÃ¼ÆÊýãÐÖµÎª9999£¬³¬¹ýÊ±£¬×Ô¶¯ÇåÁã£¬²¢´¥·¢ÖÐ¶Ï
-		TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 Ê±ÖÓÔ¤·ÖÆµÖµ£¬¶¨Ê±Æ÷µÄ¼ÆÊýµÄÆµÂÊµÈÓÚÖ÷Ê±ÖÓÆµÂÊ³ýÒÔ¸ÃÔ¤·ÖÆµÖµ
-  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // Ê±ÖÓ·ÖÆµ±¶Êý(ÓÃÓÚÊý×ÖÂË²¨£¬ÔÝÊ±ÎÞÓÃ)
-  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // ¼ÆÊý·½Ê½ÎªÏòÉÏ¼ÆÊý
+  	TIM_TimeBaseStructure. TIM_Period =9999;		  //ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎª9999ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+		TIM_TimeBaseStructure.TIM_Prescaler =71;	   //	 Ê±ï¿½ï¿½Ô¤ï¿½ï¿½ÆµÖµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Æµï¿½Ê³ï¿½ï¿½Ô¸ï¿½Ô¤ï¿½ï¿½ÆµÖµ
+  	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;	 // Ê±ï¿½Ó·ï¿½Æµï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½)
+  	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Îªï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½
 
-    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 ³õÊ¼»¯tim3
-    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //Çå³ýTIM3Òç³öÖÐ¶Ï±êÖ¾
-    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  Ê¹ÄÜTIM3µÄÒç³ö¸üÐÂÖÐ¶Ï
-    TIM_Cmd(TIM3,ENABLE);					  //		   Ê¹ÄÜTIM3
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);		 //	 ï¿½ï¿½Ê¼ï¿½ï¿½tim3
+    TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //ï¿½ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+    TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE); //  Ê¹ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+    TIM_Cmd(TIM3,ENABLE);					  //		   Ê¹ï¿½ï¿½TIM3
 }
 
 
-void TIM3_IRQHandler(void)		//TIM3µÄÒç³ö¸üÐÂÖÐ¶ÏÏìÓ¦º¯Êý
+void TIM3_IRQHandler(void)		//TIM3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
 {     
 			float Vx;
-	    TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	 //Çå¿ÕTIM3Òç³öÖÐ¶ÏÏìÓ¦º¯Êý±êÖ¾Î»
-			ADC_SoftwareStartConvCmd(ADC1, ENABLE); //¿ªÊ¼µ¥´ÎÄ£Ê½Êý¾Ý×ª»»
+	    TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	 //ï¿½ï¿½ï¿½TIM3ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾Î»
+			ADC_SoftwareStartConvCmd(ADC1, ENABLE); //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 	    AD1_Value=ADC_GetConversionValue(ADC1);
       Vx = (AD1_Value * 3.3) / 4095;
-      resistence =(10*Vx) / (3.3-Vx);	//¼ÆËã´ËÊ±µç×è
+      resistence =(10*Vx) / (3.3-Vx);	//ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 }			
 
 
-void nvic()									//ÅäÖÃÖÐ¶ÏÓÅÏÈ¼¶
+void nvic()									//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½
 {	 
-     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  ÃüÃûÒ»ÓÅÏÈ¼¶±äÁ¿
+     NVIC_InitTypeDef NVIC_InitStructure;  //	 //	  ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	 
-		 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0); //ÒªÓÃÍ¬Ò»¸öGroup
-     NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3	Òç³ö¸üÐÂÖÐ¶Ï
-     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;//	´ò¶ÏÓÅÏÈ¼¶Îª1£¬ÓëÉÏÒ»¸öÏàÍ¬£¬²»Ï£ÍûÖÐ¶ÏÏà»¥´ò¶Ï¶Ô·½
-     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; 	//	ÏìÓ¦ÓÅÏÈ¼¶1£¬µÍÓÚÉÏÒ»¸ö£¬µ±Á½¸öÖÐ¶ÏÍ¬Ê±À´Ê±£¬ÉÏÒ»¸öÏÈÖ´ÐÐ
+		 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0); //Òªï¿½ï¿½Í¬Ò»ï¿½ï¿½Group
+     NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½Îª1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½à»¥ï¿½ï¿½Ï¶Ô·ï¿½
+     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; 	//	ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Í¬Ê±ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
      NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
      NVIC_Init(&NVIC_InitStructure);
 	
- 
 }
 void ADC()
 {										 
 	ADC_InitTypeDef ADC_InitStructure;
 	
-  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;   //ÉèÖÃADC1ºÍADC2¹¤×÷ÔÚ¶ÀÁ¢¹¤×÷Ä£Ê½
-  ADC_InitStructure.ADC_ScanConvMode = DISABLE;				// ÉèÖÃADC¹¤×÷ÔÚÉ¨ÃèÄ£Ê½£¨¶àÍ¨µÀ£©£¬Èç¹ûÖ»ÐèÒªÒ»¸öÍ¨µÀ£¬ÅäÖÃÎªµ¥Í¨µÀÄ£Ê½ DISABLE
-  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;  //ÉèÖÃADC¹¤×÷ÔÚµ¥´ÎÄ£Ê½£¨Ê¹ÄÜÒ»´Î£¬×ª»»Ò»´Î£»Ò²¿ÉÒÔÅäÖÃÁ¬ÐøÄ£Ê½£¬×Ô¶¯ÖÜÆÚÐÔ²ÉÑù
-  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;  //ÉèÖÃ×ª»»ÓÉÈí¼þ´¥·¢£¬²»ÓÃÍâ²¿´¥·¢
-  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;              //ADCÊý¾ÝÓÒ¶ÔÆë
-  ADC_InitStructure.ADC_NbrOfChannel = 1;                          //ÉèÖÃ½øÐÐ×ª»»µÄÍ¨µÀÊýÄ¿Îª5
-  ADC_Init(ADC1, &ADC_InitStructure);                              //³õÊ¼»¯ADC1
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;   //ï¿½ï¿½ï¿½ï¿½ADC1ï¿½ï¿½ADC2ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+  ADC_InitStructure.ADC_ScanConvMode = DISABLE;				// ï¿½ï¿½ï¿½ï¿½ADCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ÒªÒ»ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Í¨ï¿½ï¿½Ä£Ê½ DISABLE
+  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;  //ï¿½ï¿½ï¿½ï¿½ADCï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Ê¹ï¿½ï¿½Ò»ï¿½Î£ï¿½×ªï¿½ï¿½Ò»ï¿½Î£ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½
+  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;  //ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;              //ADCï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½
+  ADC_InitStructure.ADC_NbrOfChannel = 1;                          //ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ä¿Îª5
+  ADC_Init(ADC1, &ADC_InitStructure);                              //ï¿½ï¿½Ê¼ï¿½ï¿½ADC1
 
-  ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,ADC_SampleTime_239Cycles5);  //ÉèÖÃADC1µÄÍ¨µÀ0µÚÒ»¸ö½øÐÐ×ª»»£¬²ÉÑùÊ±ÖÓÖÜÆÚ239.5¸ö
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,ADC_SampleTime_239Cycles5);  //ï¿½ï¿½ï¿½ï¿½ADC1ï¿½ï¿½Í¨ï¿½ï¿½0ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½239.5ï¿½ï¿½
 
-  ADC_Cmd(ADC1, ENABLE);                           //Ê¹ÄÜADC1
+  ADC_Cmd(ADC1, ENABLE);                           //Ê¹ï¿½ï¿½ADC1
   
-  ADC_ResetCalibration(ADC1);                        //ÖØÖÃADC1µÄÐ£×¼¼Ä´æÆ÷
-  while(ADC_GetResetCalibrationStatus(ADC1));        //µÈ´ýADC1Ð£×¼ÖØÖÃÍê³É
+  ADC_ResetCalibration(ADC1);                        //ï¿½ï¿½ï¿½ï¿½ADC1ï¿½ï¿½Ð£×¼ï¿½Ä´ï¿½ï¿½ï¿½
+  while(ADC_GetResetCalibrationStatus(ADC1));        //ï¿½È´ï¿½ADC1Ð£×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-  ADC_StartCalibration(ADC1);                        //¿ªÊ¼ADC1Ð£×¼
-  while(ADC_GetCalibrationStatus(ADC1));             //µÈ´ýADC1Ð£×¼Íê³É
-  ADC_SoftwareStartConvCmd(ADC1, ENABLE);            //Ê¹ÄÜADC1Èí¼þ¿ªÊ¼×ª»»
+  ADC_StartCalibration(ADC1);                        //ï¿½ï¿½Ê¼ADC1Ð£×¼
+  while(ADC_GetCalibrationStatus(ADC1));             //ï¿½È´ï¿½ADC1Ð£×¼ï¿½ï¿½ï¿½
+  ADC_SoftwareStartConvCmd(ADC1, ENABLE);            //Ê¹ï¿½ï¿½ADC1ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼×ªï¿½ï¿½
 }
 

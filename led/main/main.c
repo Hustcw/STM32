@@ -25,8 +25,8 @@ int main(void)
     {
 				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) && GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13))
 				{
-						flag = 1;
-				}
+					flag = 1;
+		        }
         //GPIO_SetBits(GPIOC, GPIO_Pin_12 | GPIO_Pin_13); //	 函数设置GPIOC的BSRR寄存器
         LedFloating(&mode_control, &velocity_control,&flag);
     }
@@ -41,23 +41,22 @@ void ignite_A(int *velocity_control,int *mode_control,int *flag)
         {
             GPIO_ResetBits(GPIOA, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5);
             GPIO_SetBits(GPIOA, GPIO_Pins[ii]);
-						for(jj = 0; jj < 20 ; jj++)
-						{
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
-								{
-										*flag = 0;
-										*mode_control = (*mode_control + 1) % 2;
-										return;
-								}
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
-								{
-										*flag = 0;
-										*velocity_control = (*velocity_control + 1) % 2;
-										return;
-								}								
-							  delay_nms(5);
-						}
-            
+			for(jj = 0; jj < 20 ; jj++)
+			{
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
+				{
+					*flag = 0;
+					*mode_control = (*mode_control + 1) % 2;
+					return;
+				}
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
+				{
+					*flag = 0;
+					*velocity_control = (*velocity_control + 1) % 2;
+					return;
+				}								
+				delay_nms(5);
+		    }
         }
     }
     else
@@ -66,22 +65,19 @@ void ignite_A(int *velocity_control,int *mode_control,int *flag)
         {
             GPIO_ResetBits(GPIOA, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5);
             GPIO_SetBits(GPIOA, GPIO_Pins[ii]);
-            for(jj = 0; jj < 20 ; jj++)
-						{
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
-								{
-										*flag = 0;
-										*mode_control = (*mode_control + 1) % 2;
-										return;
-								}
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
-								{
-										*flag = 0;
-										*velocity_control = (*velocity_control + 1) % 2;
-										return;
-								}								
-							  delay_nms(15);
-						}
+            for(jj = 0; jj < 20 ; jj++){
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag){
+					*flag = 0;
+					*mode_control = (*mode_control + 1) % 2;
+						return;
+				}
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag){
+					*flag = 0;
+					*velocity_control = (*velocity_control + 1) % 2;
+					return;
+				}								
+				delay_nms(15);
+		    }
         }
     }
 }
@@ -96,22 +92,22 @@ void ignite_B(int *velocity_control,int * mode_control,int* flag)
             GPIO_ResetBits(GPIOA, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5);
             GPIO_SetBits(GPIOA, GPIO_Pins[ii]);
             GPIO_SetBits(GPIOA, GPIO_Pins[5 - ii]);
-            for(jj = 0; jj < 20 ; jj++)
-						{
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
-								{
-										*flag = 0;
-										*mode_control = (*mode_control + 1) % 2;
-										return;
-								}
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
-								{
-										*flag = 0;
-										*velocity_control = (*velocity_control + 1) % 2;
-										return;
-								}								
-							  delay_nms(5);
-						}
+            for(jj = 0; jj < 20 ; jj++){
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
+					
+                {
+					*flag = 0;
+					*mode_control = (*mode_control + 1) % 2;
+					return;
+				}
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
+				{
+					*flag = 0;
+					*velocity_control = (*velocity_control + 1) % 2;
+					return;
+				}								
+					delay_nms(5);
+			}
         }
     }
 
@@ -122,22 +118,22 @@ void ignite_B(int *velocity_control,int * mode_control,int* flag)
             GPIO_ResetBits(GPIOA, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5);
             GPIO_SetBits(GPIOA, GPIO_Pins[ii]);
             GPIO_SetBits(GPIOA, GPIO_Pins[5 - ii]);
-             for(jj = 0; jj < 20 ; jj++)
-						{
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
-								{
-										*flag = 0;
-										*mode_control = (*mode_control + 1) % 2;
-										return;
-								}
-								if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
-								{
-										*flag = 0;
-										*velocity_control = (*velocity_control + 1) % 2;
-										return;
-								}								
-							  delay_nms(15);
-						}
+            for(jj = 0; jj < 20 ; jj++)
+			{
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_12) == 0 && *flag)
+				{
+					*flag = 0;
+					*mode_control = (*mode_control + 1) % 2;
+					return;
+				}
+				if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) == 0 && *flag)
+				{
+					*flag = 0;
+				    *velocity_control = (*velocity_control + 1) % 2;
+					return;
+				}								
+				delay_nms(15);
+			}
         }
     }
 }
@@ -184,8 +180,8 @@ void GPIO_Configuration(void) //使用某io口输入输出时，请务必对其初始化配置
     GPIO_InitStructureA.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
     GPIO_Init(GPIOA, &GPIO_InitStructureA); //初始化GPIOA的相应IO口为上述配置，用于led输出
 
-    GPIO_InitStructureC.GPIO_Mode = GPIO_Mode_IPU;  //配置IO口工作模式为	推挽输出（有较强的输出能力）
-    GPIO_InitStructureC.GPIO_Speed = GPIO_Speed_50MHz; //配置IO口最高的输出速率为50M
+    GPIO_InitStructureC.GPIO_Mode = GPIO_Mode_IPU;  
+    GPIO_InitStructureC.GPIO_Speed = GPIO_Speed_50MHz; 
     GPIO_InitStructureC.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13;
     GPIO_Init(GPIOC, &GPIO_InitStructureC); //初始化GPIOC的相应IO口为上述配置，用于led输出
 }
